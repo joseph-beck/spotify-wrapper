@@ -1,19 +1,42 @@
-<script>
-	import { fetchProfile } from "$lib/api/profle";
-    //import type { UserProfile } from "$lib/types/spotify";
+<script lang="ts">
+    import { getAuthorizationUrl, getAccessTokenFromUrlHash, getProfile, getUserProfileImage } from '$lib/api/spotify';
+	import type { UserProfile } from '$lib/types/spotify';
 
-    //let searchResponse: UserProfile = {};
+    let accessToken: string | null = getAccessTokenFromUrlHash();
+    let profile: UserProfile | null = null;
 
-    async function getUser() {
-        let resp = fetchProfile("31ovzh427e7tjogeiw2x26ud5o54")
-        let searchResponse = await resp;
-        console.log(searchResponse);
+    async function fetchProfile() {
+        if (!accessToken) {
+            window.location.href = getAuthorizationUrl();
+        } else {
+            try {
+                const data = await getProfile(accessToken);
+                console.log(data);
+                profile = data;
+            } catch (error) {
+                console.error('Error fetching profile:', error);
+            }
+        }
     }
+
+    import { onMount } from 'svelte';
+    onMount(fetchProfile);
 </script>
 
-<section>
-    <button on:click={getUser}>clcik</button>
-</section>
+<main>
+    <h1>Spotify Wrapper</h1>
+
+    {#if profile !== null}
+        <img src="{getUserProfileImage(profile)}" alt="User Profile"/>
+        <p>{profile.display_name} {profile.product}</p>
+    {:else}
+        {#if accessToken}
+            <p>Loading profile data...</p>
+        {:else}
+            <p>Redirecting to Spotify authorization...</p>
+        {/if}
+    {/if}
+</main>
 
 <style>
 
