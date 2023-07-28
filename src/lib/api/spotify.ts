@@ -35,10 +35,9 @@ export async function getProfile(accessToken: string): Promise<UserProfile> {
 }
 
 export function getUserProfileImage(profile: UserProfile): string | null {
-    // Check if profile has images
     if (profile?.images?.length > 0) {
-      // Assuming the first image in the array is the desired size (you can choose other sizes if needed)
-      return profile.images[0].url;
+        return profile.images[0].url;
     }
-    return null; // Return null if no image available
-  }
+
+    return null;
+}
