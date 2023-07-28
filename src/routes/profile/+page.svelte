@@ -1,6 +1,7 @@
 <script lang="ts">
     import { getAuthorizationUrl, getAccessTokenFromUrlHash, getProfile, getUserProfileImage, getTopTracks, getTopArtists } from '$lib/api/spotify';
 	import type { TopArtists, TopTracks, UserProfile } from '$lib/types/spotify';
+    import { fly } from 'svelte/transition';
 
     let accessToken: string | null = getAccessTokenFromUrlHash();
     let profile: UserProfile | null = null;
@@ -48,7 +49,7 @@
         <h2>Top Tracks</h2>
         <ul>
             {#each topTracks.items as track}
-                <li>
+                <li transition:fly="{{ y: 50, duration: 1000 }}">
                     <div class="track-info">
                         <img src="{track.album.images[0]?.url}" alt="Track"/>
                         <p>{track.name} - {track.artists[0].name}</p>
@@ -60,7 +61,7 @@
         <h2>Top Artists</h2>
         <ul>
             {#each topArtists.items as artist}
-                <li>
+                <li transition:fly="{{ y: 50, duration: 1000 }}">
                     <div class="artist-info">
                         <img src="{artist.images[0]?.url}" alt="Artist"/>
                         <p>{artist.name}</p>
@@ -77,5 +78,11 @@
     .profile-info, .track-info, .artist-info {
         display: flex;
         align-items: center;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
     }
 </style>
