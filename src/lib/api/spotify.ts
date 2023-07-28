@@ -1,5 +1,5 @@
 
-import type { UserProfile } from '$lib/types/spotify';
+import type { TopArtists, TopTracks, UserProfile } from '$lib/types/spotify';
 import axios from 'axios';
 import querystring from 'querystring';
 
@@ -8,7 +8,7 @@ const CLIENT_ID = 'bafec66b777341cc98db566863368d07';
 const REDIRECT_URI = 'http://localhost:5173/profile';
 
 export function getAuthorizationUrl() {
-    const scopes = ['user-read-private', 'user-read-email'];
+    const scopes = ['user-read-private', 'user-read-email', 'user-top-read'];
     const queryParams = querystring.stringify({
         client_id: CLIENT_ID,
         response_type: 'token',
@@ -40,4 +40,16 @@ export function getUserProfileImage(profile: UserProfile): string | null {
     }
 
     return null;
+}
+
+export async function getTopTracks(accessToken: string): Promise<TopTracks> {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/tracks`, { headers });
+    return response.data;
+}
+
+export async function getTopArtists(accessToken: string): Promise<TopArtists> {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/artists`, { headers });
+    return response.data;
 }
