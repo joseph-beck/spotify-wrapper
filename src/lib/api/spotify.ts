@@ -34,9 +34,15 @@ export async function getProfile(accessToken: string): Promise<UserProfile> {
     return response.data;
 }
 
-export function getUserProfileImage(profile: UserProfile): string | null {
+export function getUserProfileImage(profile: UserProfile, width = 640, height = 640): string | null {
     if (profile?.images?.length > 0) {
-        return profile.images[0].url;
+      const closestImage = profile.images.reduce((prev, curr) => {
+            const prevDiff = Math.abs(prev.width - width) + Math.abs(prev.height - height);
+            const currDiff = Math.abs(curr.width - width) + Math.abs(curr.height - height);
+            return currDiff < prevDiff ? curr : prev;
+      });
+
+      return closestImage.url;
     }
 
     return null;

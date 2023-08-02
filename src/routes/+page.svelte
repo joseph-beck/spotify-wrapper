@@ -8,6 +8,8 @@
 
 <section>
 	<h1>Hello World</h1>
+
+	<a href="/profile">View profile</a>
 </section>
 
 <style>
