@@ -1,8 +1,8 @@
 <script lang="ts">
-    import Artists from './Artists.svelte';
-	import Tracks from './Tracks.svelte';
-	import Profile from './Profile.svelte';
-	import Footer from '../Footer.svelte';
+    import Artists from '../../lib/components/Artists.svelte';
+	import Tracks from '../../lib/components/Tracks.svelte';
+	import Profile from '../../lib/components/Profile.svelte';
+	import Footer from '../../lib/components/Footer.svelte';
 
     import { getAuthorizationUrl, getAccessTokenFromUrlHash, getProfile, getUserProfileImage, getTopTracks, getTopArtists } from '$lib/api/spotify';
 	import type { TopArtists, TopTracks, UserProfile } from '$lib/types/spotify';
