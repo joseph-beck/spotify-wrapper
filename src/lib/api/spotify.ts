@@ -54,8 +54,32 @@ export async function getTopTracks(accessToken: string): Promise<TopTracks> {
     return response.data;
 }
 
+export async function getTopTracksRecent(accessToken: string): Promise<TopTracks> {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/tracks?time_range=short_term`, { headers });
+    return response.data;
+}
+
+export async function getTopTracksAllTime(accessToken: string): Promise<TopTracks> {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/tracks?time_range=long_term`, { headers });
+    return response.data;
+}
+
 export async function getTopArtists(accessToken: string): Promise<TopArtists> {
     const headers = { Authorization: `Bearer ${accessToken}` };
     const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/artists`, { headers });
+    return response.data;
+}
+
+export async function getTopArtistsRecent(accessToken: string): Promise<TopArtists> {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/artists?time_range=short_term`, { headers });
+    return response.data;
+}
+
+export async function getTopArtistsAllTime(accessToken: string): Promise<TopArtists> {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/artists?time_range=long_term`, { headers });
     return response.data;
 }
