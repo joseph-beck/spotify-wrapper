@@ -1,5 +1,5 @@
 <script lang="ts">
-
+    export let percent: number;
 </script>
 
 <div>
@@ -12,7 +12,7 @@
     >
         <span
             class="block h-3 rounded-full bg-[repeating-linear-gradient(45deg,_var(--tw-gradient-from)_0,_var(--tw-gradient-from)_20px,_var(--tw-gradient-to)_20px,_var(--tw-gradient-to)_40px)] from-indigo-400 to-indigo-500"
-            style="width: 75%"
+            style={`width: ${percent}%`}
         >
         </span>
     </span>

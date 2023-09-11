@@ -23,7 +23,7 @@
                 >
                     <span class="sr-only">Menu</span>
                     <img
-                        alt="Man"
+                        alt="profile"
                         src="{getUserProfileImage(profile)}"
                         class="h-10 w-10 rounded-full object-cover"
                     />
