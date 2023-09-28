@@ -7,6 +7,7 @@
 
     import { getAuthorizationUrl, getAccessTokenFromUrlHash, getProfile, getTopTracks, getTopArtists, getTopTracksRecent, getTopArtistsRecent, getTopArtistsAllTime, getTopTracksAllTime } from '$lib/api/spotify';
 	import type { TopArtists, TopTracks, UserProfile } from '$lib/types/spotify';
+    import { onMount } from 'svelte';
 
     let accessToken: string | null = getAccessTokenFromUrlHash();
     let profile: UserProfile | null = null;
@@ -39,7 +40,6 @@
         currentArtists = topArtistsAllTime;
     }
 
-    import { onMount } from 'svelte';
     onMount(async () => {
         if (!accessToken) {
             window.location.href = getAuthorizationUrl();
@@ -63,7 +63,6 @@
 </script>
 
 <main>
-
     {#if    profile !== null &&
             topTracks !== null &&
             topTracksRecent !== null &&
@@ -87,7 +86,7 @@
                 </select>
             </div>
 
-            <div class="hidden sm:block">
+            <div class="hidden sm:block ml-12">
                 <nav class="flex gap-6" aria-label="Tabs">
                     <button
                         class="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700"

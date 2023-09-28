@@ -1,4 +1,3 @@
-
 import type { TopArtists, TopTracks, UserProfile } from '$lib/types/spotify';
 import axios from 'axios';
 import querystring from 'querystring';
