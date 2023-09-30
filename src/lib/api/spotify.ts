@@ -1,11 +1,10 @@
-
 import type { TopArtists, TopTracks, UserProfile } from '$lib/types/spotify';
 import axios from 'axios';
 import querystring from 'querystring';
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 const CLIENT_ID = 'bafec66b777341cc98db566863368d07';
-const REDIRECT_URI = 'https://spotify-wrapper.vercel.app/profile';
+const REDIRECT_URI = 'http://localhost:5173/profile';
 
 export function getAuthorizationUrl() {
     const scopes = ['user-read-private', 'user-read-email', 'user-top-read'];

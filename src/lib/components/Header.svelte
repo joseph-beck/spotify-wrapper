@@ -17,13 +17,15 @@
             <div
                 class="flex flex-1 items-center justify-between gap-8 sm:justify-end"
             >
-                <button
+                <a
+                    href={profile.external_urls.spotify}
+                    target="_blank"
                     type="button"
                     class="group flex shrink-0 items-center rounded-lg transition"
                 >
                     <span class="sr-only">Menu</span>
                     <img
-                        alt="Man"
+                        alt="profile"
                         src="{getUserProfileImage(profile)}"
                         class="h-10 w-10 rounded-full object-cover"
                     />
@@ -32,7 +34,7 @@
                         <strong class="block font-medium">{profile.display_name}</strong>
                         <span class="text-gray-500">{profile.product}</span>
                     </p>
-                </button>
+                </a>
             </div>
         </div>
     </div>
